@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #fefefe;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: #fff;
+            height: 50px;
+            transition: all .3s ease-in-out;
+        }
+
+        .header-scrolled {
+            --header-background-color-opacity: 1;
+            --header-color: #000;
+            background-color: rgba(254, 254, 254, var(--header-background-color-opacity));
+            color: var(--header-color);
+        }
+
+        .box {
+            height: 500px;
+            background: linear-gradient(180deg, blue, #fff);
+            overflow: auto;
+            padding-top: 50px;
+        }
+
+        .drag-box {
+            position: fixed;
+            z-index: 9;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: rgba(49, 145, 78, 0.63);
+            /* touch-action: none; */
+            user-select: none;
+        }
+
+        .footer {
+            position: relative;
+            z-index: 1;
+            margin-top: -50px;
+            height: 50px;
+            background: linear-gradient(0deg, skyblue 0%, skyblue 10%, transparent );
+            transition: opacity .3s ease-out;
+        }
+
+        .footer-transparent {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header" id="header">标题</div>
+    <div class="box" id="box">
+        <div class="drag-box" id="dragBox"></div>
+        <div>发射微软微软为w点法大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点法大安抚威威认为师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点法大师werwe傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射人微软we点法大师傅阿斯顿发射点</div>
+        <div>发射点法大我认为为为师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射微任务w法大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点我认为we法大师傅阿斯顿发射点</div>
+        <div>发射点为为we法大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点法大额we师傅阿斯顿发射点</div>
+        <div>发射点 微任务为为法大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点人文we法大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅我二位阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点法大 为rwe师傅阿斯顿发射点</div>
+        <div>发射点法为微软为大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点</div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+    </div>
+    <div class="footer" id="footer"></div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发44443423423射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿23434发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点qwerqr发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发234234射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发fawerqew的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射rqwer点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅ewrwqe阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的法定阿迪斯发423432 </div>
+        <div>发射点法大师傅阿斯顿发射点发射点发的234234234法定阿迪斯发423432 </div>
+
+</body>
+
+<script>
+
+    const box = document.querySelector('#box')
+    const footer = document.querySelector("#footer");
+    const header = document.querySelector('#header')
+
+    box.addEventListener("scroll", e => {
+        // console.log(e)
+        let totalHeight = box.scrollHeight
+        let scrollTop = box.scrollTop
+        let clientHeight = box.clientHeight
+        let isBottom = totalHeight - scrollTop - clientHeight <= 10
+        let isScrolled = scrollTop > 0;
+
+        let backgroundColorOpacity = Math.min(1, (scrollTop) / 100)
+        let headerColor = scrollTop > 50 ? '#000' : '#fff'
+
+        header.style.setProperty('--header-background-color-opacity', backgroundColorOpacity)
+        header.style.setProperty('--header-color', headerColor)
+
+        header.classList.toggle('header-scrolled', isScrolled)
+        footer.classList.toggle('footer-transparent', isBottom)
+    }, {
+        passive: true
+    })
+
+    const dragBox = document.querySelector('#dragBox')
+
+    // 元素的起始位置
+    let boxLeft = 0
+    let boxTop = 0
+
+    // 手指起始位置
+    let touchStartX = 0
+    let touchStartY = 0
+
+    dragBox.addEventListener('touchstart', e => {
+        boxLeft = dragBox.offsetLeft
+        boxTop = dragBox.offsetTop
+
+        touchStartX = e.touches[0].clientX
+        touchStartY = e.touches[0].clientY
+
+        document.body.style.overflow = 'hidden'
+        
+        e.preventDefault()
+        e.stopPropagation()
+    })
+
+    dragBox.addEventListener('touchmove', e => {
+        let touchEndX  = e.touches[0].clientX
+        let touchEndY = e.touches[0].clientY
+
+        let boxWidth = dragBox.clientWidth
+        let boxHeight = dragBox.clientHeight
+
+        let clientWidth = window.innerWidth
+        let clientHeight = window.innerHeight
+
+        // dragBox.innerHTML = `<div>${clientHeight - boxHeight}</div><div>${touchEndY - touchStartY + boxTop}</div>`
+
+        dragBox.style.left = Math.min(Math.max(0, touchEndX - touchStartX + boxLeft), clientWidth - boxWidth) + 'px'
+        dragBox.style.top = Math.min(Math.max(0, touchEndY - touchStartY + boxTop), clientHeight - boxHeight) + 'px'
+        e.preventDefault()
+        e.stopPropagation()
+    })
+
+    dragBox.addEventListener('touchend', e => {
+        document.body.style.overflow = 'unset'
+    })
+</script>
+</html>

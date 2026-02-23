@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        background-color: skyblue;
+    }
+
+    .box {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(180deg, pink, transparent);
+        margin: 100px auto 0;
+        box-sizing: border-box;
+        padding: 2px;
+        border-radius: 15px;
+    }
+
+    .box::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 15px;
+        border: 2px solid transparent;
+        background: linear-gradient(var(--deg), blue 0%, transparent 30%, red 50%, transparent 70%, yellow 100%) border-box;
+        /* -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); */
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: rotate 3s infinite forwards;
+    }
+
+    /* todo 旋转渐变色边框 */
+    @keyframes rotate {
+        0% {
+            --deg: 135deg;
+        }
+
+        100% {
+            --deg: 360deg;
+        }
+    }
+
+</style>
+<body>
+    <div class="box"></div>
+</body>
+</html>
