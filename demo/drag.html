@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      background-color: #eee;
+      padding: 32px;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: calc(100% - 64px);
+      display: flex;
+    }
+
+    .panel {
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    .left {
+      position: relative;
+      width: 200px;
+      background-color: #fff;
+      border-right: 1px solid #ccc;
+    }
+
+    .center {
+      flex: 1;
+      background-color: #fff;
+    }
+
+    .main {
+      min-width: 400px;
+    }
+
+    .right {
+      position: relative;
+      width: 300px;
+      border-left: 1px solid #ccc;
+    }
+
+    .div {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 11px;
+      cursor: ew-resize;
+      opacity: 0;
+    }
+
+    .div::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 4px;
+      bottom: 0;
+      left: 4px;
+      background-color: blue;
+    }
+
+    #leftDiv {
+      right: -5px;
+
+    }
+
+    #rightDiv {
+      left: -5px;
+    }
+
+    #rightContent {
+      background-color: #fff;
+      height: 100%;
+      overflow-x: auto;
+    }
+
+    .full {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 99;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="panel left" id="left">
+      <div class="div" id="leftDiv"></div>
+    </div>
+    <div class="panel center" id="center">
+      <div class="main">
+        <div>ad发撒打发士大夫阿斯蒂芬阿斯蒂芬阿斯顿阿斯顿阿斯顿撒旦 </div>
+      </div>
+    </div>
+    <div class="panel right" id="right">
+      <div id="rightContent">
+        <div style="min-width: 100px;">
+          <button id="full" style="margin-left: 10px;">全屏</button>
+        </div>
+      </div>
+
+      <div class="div" id="rightDiv"></div>
+    </div>
+  </div>
+</body>
+
+<script>
+  const rightDiv = document.querySelector('#rightDiv')
+  const leftDiv = document.querySelector('#leftDiv')
+  const right = document.querySelector('#right')
+  const left = document.querySelector('#left')
+  const center = document.querySelector('#center')
+  const full = document.querySelector('#full')
+  const container = document.querySelector('.container')
+  const rightContent = document.querySelector('#rightContent')
+  let rightWidth = right.getBoundingClientRect().width
+  let leftWidth = left.getBoundingClientRect().width
+  let isDragging = false
+  let draggingDiv = null
+  let startX = 0
+  let leftTimer = null
+  let rightTimer = null
+
+  function renderRight () {
+    right.style.width = rightWidth + 'px'
+  }
+
+  function renderLeft () {
+    left.style.width = leftWidth + 'px'
+  }
+
+  
+  let mousein = false
+  let mousedown = false
+  let mouseTarget = 0
+
+  leftDiv.addEventListener('mouseenter', () => {
+    if (draggingDiv === 'right') {
+      return
+    }
+
+    mousein = true
+
+    clearTimeout(leftTimer)
+    leftTimer = setTimeout(() => {
+      // leftDiv.style.transition = 'none'
+      leftDiv.style.opacity = 1
+    }, 300)
+  })
+
+  leftDiv.addEventListener('mouseleave', () => {
+    if (draggingDiv === 'right') {
+      return
+    }
+
+    mousein = false
+    if (!mousedown) {
+      clearTimeout(leftTimer)
+      leftDiv.style.opacity = 0
+    }
+  })
+
+  rightDiv.addEventListener('mouseenter', () => {
+    if (draggingDiv === 'left') {
+      return
+    }
+
+    mousein = true
+    clearTimeout(rightTimer)
+    rightTimer = setTimeout(() => {
+      // rightDiv.style.transition = 'none'
+      rightDiv.style.opacity = 1
+    }, 300)
+  })
+
+  rightDiv.addEventListener('mouseleave', () => {
+    if (draggingDiv === 'left') {
+      return
+    }
+
+    mousein = false
+    if (!mousedown) {
+      clearTimeout(rightTimer)
+      rightDiv.style.opacity = 0
+    }
+  })
+
+  let containerRect;
+  rightDiv.addEventListener('mousedown', e => {
+    clearTimeout(rightTimer)
+    rightDiv.style.opacity = 1
+    mouseTarget = 2
+    mousedown = true
+    isDragging = true
+    draggingDiv = 'right'
+    startX = e.clientX
+    document.body.style.userSelect = 'none'
+    containerRect = container.getBoundingClientRect()
+  })
+
+  leftDiv.addEventListener('mousedown', e => {
+    clearTimeout(leftTimer)
+    leftDiv.style.opacity = 1
+    mouseTarget = 1
+    mousedown = true
+    isDragging = true
+    draggingDiv = 'left'
+    startX = e.clientX
+    document.body.style.userSelect = 'none'
+    containerRect = container.getBoundingClientRect()
+  })
+
+  document.addEventListener('mousemove', e => {
+    if (!isDragging) return
+    const minWidth = 0
+
+    if (draggingDiv === 'right') {
+      const newRightWidth = containerRect.right - e.clientX
+      const maxWidth = containerRect.width - 400 - leftWidth
+      rightWidth = Math.max(minWidth, Math.min(newRightWidth, maxWidth))
+      renderRight()
+    } else if (draggingDiv === 'left') {
+      const newLeftWidth = e.clientX - containerRect.left
+      const maxWidth = containerRect.width - 400 - rightWidth
+      leftWidth = Math.max(minWidth, Math.min(newLeftWidth, maxWidth))
+      renderLeft()
+    }
+  })
+
+  document.addEventListener('mouseup', () => {
+    isDragging = false
+    draggingDiv = null
+    document.body.style.userSelect = ''
+    mousedown = false
+
+    if (!mousein) {
+      clearTimeout(leftTimer)
+      clearTimeout(rightTimer)
+      leftDiv.style.opacity = 0
+      rightDiv.style.opacity = 0
+    }
+  })
+
+  renderLeft()
+  renderRight()
+
+  let fulled = false
+  full.addEventListener('click', () => {
+    handleFullScreen()
+  })
+  function handleFullScreen () {
+    fulled = !fulled
+    rightContent.classList.toggle('full', fulled)
+    right.style.position = fulled ? 'static' : null
+    rightDiv.style.display = fulled ? 'none' : null
+    leftDiv.style.display = fulled ? 'none' : null
+
+    // if (!fulled) {
+    //   left.style.display = 'none'
+    //   center.style.display = 'none'
+    //   right.style.flex = '1'
+    //   rightDiv.style.display = 'none'
+    // } else {
+    //   left.style.display = null
+    //   center.style.display = null
+    //   right.style.flex = null
+    //   rightDiv.style.display = null
+    // }
+  }
+</script>
+</html>
